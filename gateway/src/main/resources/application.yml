@@ -1,0 +1,239 @@
+server:
+  port: 25800
+  address: 0.0.0.0
+
+spring:
+  main:
+    web-application-type: reactive
+
+  redis:
+    host: 192.168.136.129
+    port: 6379
+    password: 123456
+    database: 1
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 1000ms
+
+
+  rabbitmq:
+    host: 192.168.136.129
+    port: 5672
+    username: root
+    password: 123456
+    virtual-host: /
+
+
+  cloud:
+    loadbalancer:
+      nacos:
+        enabled: true
+
+
+    gateway:
+      routes:
+        # 用户账号密码登录路由
+        - id: user_login
+          uri: lb://user-service
+          predicates:
+            - Path=/at/uli
+            - Method=POST
+          filters:
+            - RewritePath=/at/uli, /auth/login
+
+        # 用户手机号登录路由
+        - id: user_loginByPhone
+          uri: lb://user-service
+          predicates:
+            - Path=/at/ulp
+            - Method=POST
+          filters:
+            - RewritePath=/at/ulp, /auth/loginByPhone
+
+        # 刷新令牌
+        - id: user_refresh
+          uri: lb://user-service
+          predicates:
+            - Path=/at/ref
+            - Method=POST
+          filters:
+            - RewritePath=/at/ref, /auth/refresh
+#
+#        # 用户注销路由
+#        - id: user_logout
+#          uri: lb://user-service
+#          predicates:
+#            - Path=/ult
+#            - Method=POST
+#          filters:
+#            - RewritePath=/ult, /auth/logout
+#
+        # 用户登出路由
+        - id: user_quit
+          uri: lb://user-service
+          predicates:
+            - Path=/at/al
+            - Method=POST
+          filters:
+            - RewritePath=/at/al, /auth/logout
+
+        # 用户注册路由
+        - id: user_register
+          uri: lb://user-service
+          predicates:
+            - Path=/us/ur
+            - Method=POST
+          filters:
+            - RewritePath=/us/ur, /user/register
+
+        # 发送验证码
+        - id: sms_send
+          uri: lb://sms-service
+          predicates:
+            - Path=/ss
+            - Method=POST
+          filters:
+            - RewritePath=/ss, /sms/send
+
+        # 用户修改绑定手机路由
+        - id: user_resetPhone
+          uri: lb://user-service
+          predicates:
+            - Path=/us/urp
+            - Method=PUT
+          filters:
+            - RewritePath=/us/urp, /user/resetPhone
+
+        # 用户找回密码路由
+        - id: user_resetPass
+          uri: lb://user-service
+          predicates:
+            - Path=/us/rp
+            - Method=PUT
+          filters:
+            - RewritePath=/us/rp, /user/resetPass
+
+        # 获取获取某租户下的所有用户
+        - id: user_getUsers
+          uri: lb://user-service
+          predicates:
+            - Path=/us/gus
+            - Method=GET
+          filters:
+            - RewritePath=/us/gus, /user/getUsers
+
+
+
+
+
+
+        # 获取用户资料路由
+        - id: user_getProfile
+          uri: lb://user-service
+          predicates:
+            - Path=/us/ugp
+            - Method=GET
+          filters:
+            - RewritePath=/us/ugp, /prof/getProfile
+
+        # 上传头像路由
+        - id: user_uploadAvatar
+          uri: lb://user-service
+          predicates:
+            - Path=/us/uua
+            - Method=POST
+          filters:
+            - RewritePath=/us/uua, /prof/uploadAvatar
+
+        # 用户编辑资料路由
+        - id: user_editProfile
+          uri: lb://user-service
+          predicates:
+            - Path=/us/ueup
+            - Method=PUT
+          filters:
+            - RewritePath=/us/ueup, /prof/editProfile
+
+        # 获取用户通知路由
+        - id: user_getNotifications
+          uri: lb://user-service
+          predicates:
+            - Path=/us/ugn
+            - Method=POST
+          filters:
+            - RewritePath=/us/ugn, /not/getNotifications
+
+
+
+
+
+
+        # 获取租户信息
+        - id: tenant_getTenantInfo
+          uri: lb://user-service
+          predicates:
+            - Path=/us/gti
+            - Method=GET
+          filters:
+            - RewritePath=/us/gti, /ten/getTenantInfo
+
+        # 租户注册路由
+        - id: tenant_register
+          uri: lb://user-service
+          predicates:
+            - Path=/us/tr
+            - Method=POST
+          filters:
+            - RewritePath=/us/tr, /ten/register
+
+        # 租户更改套餐
+        - id: tenant_plan
+          uri: lb://user-service
+          predicates:
+            - Path=/us/tp
+            - Method=PUT
+          filters:
+            - RewritePath=/us/tp, /ten/tenantPlan
+
+
+
+        # 测试
+        - id: test
+          uri: lb://user-service
+          predicates:
+            - Path=/us/abc
+            - Method=POST
+          filters:
+            - RewritePath=/us/abc, /user/test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+logging:
+  level:
+    root: info
+  # 日志输出格式控制
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  # 控制台日志格式
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"  # 文件日志格式
+  # 配置日志文件输出
+  file:
+    name: log/gateway/gatewayapplication.log       # 设置日志文件的输出路径
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 30

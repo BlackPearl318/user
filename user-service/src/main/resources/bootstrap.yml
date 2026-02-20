@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: user-service
+
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        shared-configs:
+          - data-id: share-data.yml
+            group: DEFAULT_GROUP
+            refresh: true

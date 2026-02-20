@@ -1,0 +1,41 @@
+server:
+  port: 25900
+spring:
+
+  cloud:
+    loadbalancer:
+      nacos:
+        enabled: true #开启loadbalancer的负载均衡
+
+  redis:
+    host: 192.168.136.129
+    port: 6379
+    password: 123456
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 1000ms
+
+feign:
+  httpclient:
+    enabled: true #将feign的底层实现更改为httpclient
+    max-connections: 200 #最大连接数
+    max-connections-per-route: 50 #每个路径的最大连接数
+
+logging:
+  level:
+    root: info
+  # 日志输出格式控制
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  # 控制台日志格式
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"  # 文件日志格式
+  # 配置日志文件输出
+  file:
+    name: log/sms/smsapplication.log       # 设置日志文件的输出路径
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 30

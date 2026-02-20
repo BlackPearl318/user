@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.example.common.util.limit.RateLimitAutoConfiguration,\
+com.example.common.util.mq.RabbitMQConfig,\
+com.example.common.util.feign.FeignCommonAutoConfiguration

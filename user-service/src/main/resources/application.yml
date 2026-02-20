@@ -1,0 +1,68 @@
+server:
+  port: 25810
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB # 文件大小限制
+  cloud:
+    loadbalancer:
+      nacos:
+        enabled: true # 开启loadbalancer的负载均衡
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/untitled_users?useServerPrepStmts=true
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+#    cluster: # redis集群配置
+#      max-redirects: 3 # 最大重定向次数
+#      nodes: 192.168.136.129:6379, 192.168.136.129:6380, 192.168.136.129:6381 #集群节点
+    host: 192.168.136.129
+    port: 6379
+    password: 123456
+    database: 0
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 1000ms
+  rabbitmq:
+    host: 192.168.136.129
+    port: 5672
+    username: root
+    password: 123456
+    virtual-host: /
+
+feign:
+  httpclient:
+    enabled: true #将feign的底层实现更改为httpclient
+    max-connections: 200 #最大连接数
+    max-connections-per-route: 50 #每个路径的最大连接数
+
+logging:
+  level:
+    root: info
+  # 日志输出格式控制
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"  # 控制台日志格式
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"  # 文件日志格式
+  # 配置日志文件输出
+  file:
+    name: log/user/userapplication.log       # 设置日志文件的输出路径
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 30
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #mybatis日志打印
+
+
+basePath:
+  auth: /at
+  user: /us

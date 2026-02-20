@@ -1,0 +1,580 @@
+2026-02-20 14:30:20 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2026-02-20 14:30:20 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service.yml] & group[DEFAULT_GROUP]
+2026-02-20 14:30:20 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 14:30:20 [main] INFO  com.user.UserApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 14:30:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 14:30:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 14:30:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2026-02-20 14:30:20 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=463cdf35-1651-3aa7-8a5b-419a564a885a
+2026-02-20 14:30:20 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25810 (http)
+2026-02-20 14:30:21 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 14:30:21 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 14:30:21 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-20 14:30:21 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 784 ms
+2026-02-20 14:30:21 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.user.pojo.UserRoleMapping ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-02-20 14:30:21 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'sms-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 14:30:22 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 14:30:22 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25810 (http) with context path ''
+2026-02-20 14:30:22 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 14:30:22 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 14:30:22 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP user-service 192.168.110.38:25810 register finished
+2026-02-20 14:30:22 [main] INFO  com.user.UserApplication - Started UserApplication in 4.028 seconds (JVM running for 4.505)
+2026-02-20 14:30:22 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service.yml, group=DEFAULT_GROUP
+2026-02-20 14:30:22 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 14:30:22 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2026-02-20 14:30:32 [http-nio-25810-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-20 14:30:32 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-20 14:30:32 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-02-20 14:30:32 [http-nio-25810-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2026-02-20 14:45:00 [http-nio-25810-exec-3] WARN  c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://127.0.0.1:3306/untitled_users?useServerPrepStmts=true, version : 1.2.8, lastPacketReceivedIdleMillis : 868037
+2026-02-20 14:45:01 [http-nio-25810-exec-3] ERROR com.user.service.UserRoleService - 获取用户角色失败，用户ID: 1
+org.springframework.dao.DataIntegrityViolationException: Error attempting to get column 'role_name' from result set.  Cause: java.sql.SQLDataException: Cannot determine value type from string '用户'
+; Cannot determine value type from string '用户'; nested exception is java.sql.SQLDataException: Cannot determine value type from string '用户'
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:84) ~[spring-jdbc-5.3.23.jar:5.3.23]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70) ~[spring-jdbc-5.3.23.jar:5.3.23]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79) ~[spring-jdbc-5.3.23.jar:5.3.23]
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:91) ~[mybatis-spring-2.0.6.jar:2.0.6]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441) ~[mybatis-spring-2.0.6.jar:2.0.6]
+	at jdk.proxy2/jdk.proxy2.$Proxy79.selectOne(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:160) ~[mybatis-spring-2.0.6.jar:2.0.6]
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:89) ~[mybatis-plus-core-3.5.3.jar:3.5.3]
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148) ~[mybatis-plus-core-3.5.3.jar:3.5.3]
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89) ~[mybatis-plus-core-3.5.3.jar:3.5.3]
+	at jdk.proxy2/jdk.proxy2.$Proxy88.getRole(Unknown Source) ~[na:na]
+	at com.user.service.UserRoleService.getUserRole(UserRoleService.java:46) ~[classes/:na]
+	at com.user.service.AuthService.login(AuthService.java:66) ~[classes/:na]
+	at com.user.controller.AuthController.login(AuthController.java:68) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.context.filter.ContextFilter.doFilterInternal(ContextFilter.java:37) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.security.filter.GatewayAuthFilter.doFilterInternal(GatewayAuthFilter.java:65) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: java.sql.SQLDataException: Cannot determine value type from string '用户'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:114) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:73) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:96) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getObject(ResultSetImpl.java:1431) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getLong(ResultSetImpl.java:856) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getLong(ResultSetImpl.java:862) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.alibaba.druid.pool.DruidPooledResultSet.getLong(DruidPooledResultSet.java:301) ~[druid-1.2.8.jar:1.2.8]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.apache.ibatis.logging.jdbc.ResultSetLogger.invoke(ResultSetLogger.java:69) ~[mybatis-3.5.7.jar:3.5.7]
+	at jdk.proxy3/jdk.proxy3.$Proxy122.getLong(Unknown Source) ~[na:na]
+	at org.apache.ibatis.type.LongTypeHandler.getNullableResult(LongTypeHandler.java:37) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.type.LongTypeHandler.getNullableResult(LongTypeHandler.java:26) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.type.BaseTypeHandler.getResult(BaseTypeHandler.java:85) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.createPrimitiveResultObject(DefaultResultSetHandler.java:756) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.createResultObject(DefaultResultSetHandler.java:652) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.createResultObject(DefaultResultSetHandler.java:631) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getRowValue(DefaultResultSetHandler.java:398) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValuesForSimpleResultMap(DefaultResultSetHandler.java:355) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValues(DefaultResultSetHandler.java:329) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSet(DefaultResultSetHandler.java:302) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSets(DefaultResultSetHandler.java:195) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109) ~[mybatis-3.5.7.jar:3.5.7]
+	at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:132) ~[pagehelper-5.3.0.jar:na]
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:62) ~[mybatis-3.5.7.jar:3.5.7]
+	at jdk.proxy2/jdk.proxy2.$Proxy119.query(Unknown Source) ~[na:na]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:151) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:145) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140) ~[mybatis-3.5.7.jar:3.5.7]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76) ~[mybatis-3.5.7.jar:3.5.7]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427) ~[mybatis-spring-2.0.6.jar:2.0.6]
+	... 67 common frames omitted
+Caused by: com.mysql.cj.exceptions.DataConversionException: Cannot determine value type from string '用户'
+	at com.mysql.cj.result.AbstractNumericValueFactory.createFromBytes(AbstractNumericValueFactory.java:65) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.protocol.a.MysqlBinaryValueDecoder.decodeByteArray(MysqlBinaryValueDecoder.java:269) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.protocol.result.AbstractResultsetRow.decodeAndCreateReturnValue(AbstractResultsetRow.java:135) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.protocol.result.AbstractResultsetRow.getValueFromBytes(AbstractResultsetRow.java:243) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.protocol.a.result.ByteArrayRow.getValue(ByteArrayRow.java:91) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getObject(ResultSetImpl.java:1329) ~[mysql-connector-j-8.0.31.jar:8.0.31]
+	... 105 common frames omitted
+2026-02-20 14:53:00 [http-nio-25810-exec-5] WARN  c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://127.0.0.1:3306/untitled_users?useServerPrepStmts=true, version : 1.2.8, lastPacketReceivedIdleMillis : 479076
+2026-02-20 15:00:50 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 15:00:50 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 15:00:50 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 15:00:50 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 15:00:50 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2026-02-20 15:00:50 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2026-02-20 15:00:50 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-02-20 15:00:50 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2026-02-20 15:00:55 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2026-02-20 15:00:55 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service.yml] & group[DEFAULT_GROUP]
+2026-02-20 15:00:55 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 15:00:55 [main] INFO  com.user.UserApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 15:00:55 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 15:00:55 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 15:00:55 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2026-02-20 15:00:55 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=463cdf35-1651-3aa7-8a5b-419a564a885a
+2026-02-20 15:00:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25810 (http)
+2026-02-20 15:00:55 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 15:00:55 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 15:00:55 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-20 15:00:55 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 811 ms
+2026-02-20 15:00:56 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.user.pojo.UserRoleMapping ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-02-20 15:00:56 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'sms-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 15:00:57 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 15:00:57 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25810 (http) with context path ''
+2026-02-20 15:00:57 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 15:00:57 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 15:00:57 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP user-service 192.168.110.38:25810 register finished
+2026-02-20 15:00:57 [main] INFO  com.user.UserApplication - Started UserApplication in 4.204 seconds (JVM running for 4.756)
+2026-02-20 15:00:57 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service.yml, group=DEFAULT_GROUP
+2026-02-20 15:00:57 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 15:00:57 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2026-02-20 15:01:16 [http-nio-25810-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-20 15:01:16 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-20 15:01:16 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-02-20 15:01:16 [http-nio-25810-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2026-02-20 15:04:42 [http-nio-25810-exec-5] WARN  c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://127.0.0.1:3306/untitled_users?useServerPrepStmts=true, version : 1.2.8, lastPacketReceivedIdleMillis : 206212
+2026-02-20 15:04:43 [http-nio-25810-exec-5] ERROR com.user.service.TenantService - 租户注册失败，phone=19862749999
+java.lang.IllegalStateException: Transaction synchronization is not active
+	at org.springframework.transaction.support.TransactionSynchronizationManager.registerSynchronization(TransactionSynchronizationManager.java:277) ~[spring-tx-5.3.23.jar:5.3.23]
+	at com.user.service.TenantService.doRegister(TenantService.java:144) ~[classes/:na]
+	at com.user.service.TenantService.register(TenantService.java:126) ~[classes/:na]
+	at com.user.service.TenantService$$FastClassBySpringCGLIB$$ed0365bc.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.23.jar:5.3.23]
+	at org.springframework.aop.framework.CglibAopProxy.invokeMethod(CglibAopProxy.java:386) ~[spring-aop-5.3.23.jar:5.3.23]
+	at org.springframework.aop.framework.CglibAopProxy.access$000(CglibAopProxy.java:85) ~[spring-aop-5.3.23.jar:5.3.23]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704) ~[spring-aop-5.3.23.jar:5.3.23]
+	at com.user.service.TenantService$$EnhancerBySpringCGLIB$$7648a190.register(<generated>) ~[classes/:na]
+	at com.user.controller.TenantController.register(TenantController.java:52) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.context.filter.ContextFilter.doFilterInternal(ContextFilter.java:37) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.security.filter.GatewayAuthFilter.doFilterInternal(GatewayAuthFilter.java:65) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+2026-02-20 15:11:31 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 15:11:31 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 15:11:31 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 15:11:31 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 15:11:31 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2026-02-20 15:11:31 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2026-02-20 15:11:31 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-02-20 15:11:31 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2026-02-20 15:11:36 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2026-02-20 15:11:36 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service.yml] & group[DEFAULT_GROUP]
+2026-02-20 15:11:36 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 15:11:36 [main] INFO  com.user.UserApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 15:11:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 15:11:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 15:11:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2026-02-20 15:11:37 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=463cdf35-1651-3aa7-8a5b-419a564a885a
+2026-02-20 15:11:37 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25810 (http)
+2026-02-20 15:11:37 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 15:11:37 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 15:11:37 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-20 15:11:37 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 848 ms
+2026-02-20 15:11:37 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.user.pojo.UserRoleMapping ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-02-20 15:11:38 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'sms-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 15:11:39 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 15:11:39 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25810 (http) with context path ''
+2026-02-20 15:11:39 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 15:11:39 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 15:11:39 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP user-service 192.168.110.38:25810 register finished
+2026-02-20 15:11:39 [main] INFO  com.user.UserApplication - Started UserApplication in 4.369 seconds (JVM running for 4.849)
+2026-02-20 15:11:39 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service.yml, group=DEFAULT_GROUP
+2026-02-20 15:11:39 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 15:11:39 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2026-02-20 15:11:42 [http-nio-25810-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-20 15:11:42 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-20 15:11:42 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-02-20 15:11:42 [http-nio-25810-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2026-02-20 15:15:57 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 15:15:57 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 15:15:57 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 15:15:57 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 15:15:57 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2026-02-20 15:15:57 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2026-02-20 15:15:57 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-02-20 15:15:57 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2026-02-20 15:16:02 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2026-02-20 15:16:02 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service.yml] & group[DEFAULT_GROUP]
+2026-02-20 15:16:02 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 15:16:02 [main] INFO  com.user.UserApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 15:16:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 15:16:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 15:16:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2026-02-20 15:16:02 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=463cdf35-1651-3aa7-8a5b-419a564a885a
+2026-02-20 15:16:03 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25810 (http)
+2026-02-20 15:16:03 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 15:16:03 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 15:16:03 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-20 15:16:03 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 725 ms
+2026-02-20 15:16:03 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.user.pojo.UserRoleMapping ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-02-20 15:16:03 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'sms-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 15:16:04 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 15:16:04 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25810 (http) with context path ''
+2026-02-20 15:16:04 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 15:16:04 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 15:16:04 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP user-service 192.168.110.38:25810 register finished
+2026-02-20 15:16:04 [main] INFO  com.user.UserApplication - Started UserApplication in 3.743 seconds (JVM running for 4.165)
+2026-02-20 15:16:04 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service.yml, group=DEFAULT_GROUP
+2026-02-20 15:16:04 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 15:16:04 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2026-02-20 15:16:11 [http-nio-25810-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-20 15:16:11 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-20 15:16:11 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-02-20 15:16:11 [http-nio-25810-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2026-02-20 15:18:52 [http-nio-25810-exec-3] WARN  c.a.d.pool.DruidAbstractDataSource - discard long time none received connection. , jdbcUrl : jdbc:mysql://127.0.0.1:3306/untitled_users?useServerPrepStmts=true, version : 1.2.8, lastPacketReceivedIdleMillis : 160957
+2026-02-20 15:19:26 [http-nio-25810-exec-2] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [192.168.136.129:5672]
+2026-02-20 15:19:26 [http-nio-25810-exec-2] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#2651e783:0/SimpleConnection@7e2db658 [delegate=amqp://root@192.168.136.129:5672/, localPort= 61150]
+2026-02-20 15:56:41 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2026-02-20 15:56:41 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service.yml] & group[DEFAULT_GROUP]
+2026-02-20 15:56:41 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 15:56:41 [main] INFO  com.user.UserApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 15:56:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 15:56:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 15:56:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2026-02-20 15:56:41 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=463cdf35-1651-3aa7-8a5b-419a564a885a
+2026-02-20 15:56:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25810 (http)
+2026-02-20 15:56:41 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 15:56:41 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 15:56:41 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-20 15:56:41 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 706 ms
+2026-02-20 15:56:42 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.user.pojo.UserRoleMapping ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-02-20 15:56:42 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'sms-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 15:56:43 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 15:56:43 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 25810 is already in use
+2026-02-20 15:56:43 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-0} closing ...
+2026-02-20 15:56:43 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2026-02-20 15:56:43 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2026-02-20 15:56:43 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 25810 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 25810 or configure this application to listen on another port.
+
+2026-02-20 15:56:43 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 15:56:43 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 15:56:43 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 15:56:43 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 16:01:54 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2026-02-20 16:01:54 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service.yml] & group[DEFAULT_GROUP]
+2026-02-20 16:01:54 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 16:01:54 [main] INFO  com.user.UserApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 16:01:55 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 16:01:55 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 16:01:55 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2026-02-20 16:01:55 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=463cdf35-1651-3aa7-8a5b-419a564a885a
+2026-02-20 16:01:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25810 (http)
+2026-02-20 16:01:55 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 16:01:55 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 16:01:55 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-20 16:01:55 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 694 ms
+2026-02-20 16:01:55 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.user.pojo.UserRoleMapping ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-02-20 16:01:55 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'sms-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 16:01:56 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 16:01:56 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25810 (http) with context path ''
+2026-02-20 16:01:56 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 16:01:56 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 16:01:56 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP user-service 192.168.110.38:25810 register finished
+2026-02-20 16:01:57 [main] INFO  com.user.UserApplication - Started UserApplication in 3.628 seconds (JVM running for 4.062)
+2026-02-20 16:01:57 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service.yml, group=DEFAULT_GROUP
+2026-02-20 16:01:57 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 16:01:57 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2026-02-20 16:02:03 [http-nio-25810-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-20 16:02:03 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-20 16:02:03 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-02-20 16:02:03 [http-nio-25810-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2026-02-20 16:06:54 [http-nio-25810-exec-9] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: Cannot parse null string] with root cause
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Long.parseLong(Long.java:674) ~[na:na]
+	at java.base/java.lang.Long.valueOf(Long.java:1163) ~[na:na]
+	at com.user.controller.UserProfileController.getProfile(UserProfileController.java:43) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:670) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.context.filter.ContextFilter.doFilterInternal(ContextFilter.java:37) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.security.filter.GatewayAuthFilter.doFilterInternal(GatewayAuthFilter.java:65) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+2026-02-20 16:08:06 [http-nio-25810-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: Cannot parse null string] with root cause
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Long.parseLong(Long.java:674) ~[na:na]
+	at java.base/java.lang.Long.valueOf(Long.java:1163) ~[na:na]
+	at com.user.controller.UserController.resetPhone(UserController.java:74) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:699) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.23.jar:5.3.23]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779) ~[tomcat-embed-core-9.0.68.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.context.filter.ContextFilter.doFilterInternal(ContextFilter.java:37) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at com.example.common.security.filter.GatewayAuthFilter.doFilterInternal(GatewayAuthFilter.java:65) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.23.jar:5.3.23]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.68.jar:9.0.68]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+2026-02-20 20:06:18 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 20:06:18 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 20:06:18 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 20:06:18 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 20:06:18 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2026-02-20 20:06:18 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2026-02-20 20:06:18 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-02-20 20:06:18 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2026-02-20 20:06:22 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service] & group[DEFAULT_GROUP]
+2026-02-20 20:06:22 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[user-service.yml] & group[DEFAULT_GROUP]
+2026-02-20 20:06:22 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-user-service.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-user-service,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 20:06:22 [main] INFO  com.user.UserApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 20:06:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 20:06:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 20:06:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2026-02-20 20:06:22 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=463cdf35-1651-3aa7-8a5b-419a564a885a
+2026-02-20 20:06:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25810 (http)
+2026-02-20 20:06:23 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 20:06:23 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 20:06:23 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-20 20:06:23 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 696 ms
+2026-02-20 20:06:23 [main] WARN  c.b.m.c.injector.DefaultSqlInjector - class com.user.pojo.UserRoleMapping ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-02-20 20:06:23 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'sms-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 20:06:24 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 20:06:24 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25810 (http) with context path ''
+2026-02-20 20:06:24 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 20:06:24 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 20:06:24 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP user-service 192.168.110.38:25810 register finished
+2026-02-20 20:06:24 [main] INFO  com.user.UserApplication - Started UserApplication in 3.616 seconds (JVM running for 4.018)
+2026-02-20 20:06:24 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service.yml, group=DEFAULT_GROUP
+2026-02-20 20:06:24 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 20:06:24 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=user-service, group=DEFAULT_GROUP
+2026-02-20 20:06:29 [http-nio-25810-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-20 20:06:29 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-02-20 20:06:29 [http-nio-25810-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-02-20 20:06:29 [http-nio-25810-exec-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2026-02-20 23:05:07 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 23:05:07 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 23:05:07 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 23:05:07 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 23:05:07 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2026-02-20 23:05:07 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2026-02-20 23:05:07 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2026-02-20 23:05:07 [SpringApplicationShutdownHook] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

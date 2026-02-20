@@ -1,0 +1,156 @@
+2026-02-20 14:30:29 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[gateway] & group[DEFAULT_GROUP]
+2026-02-20 14:30:29 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[gateway.yml] & group[DEFAULT_GROUP]
+2026-02-20 14:30:29 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-gateway.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-gateway,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 14:30:29 [main] INFO  c.example.gateway.GatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 14:30:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 14:30:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 14:30:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2026-02-20 14:30:30 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=0c704b4e-b2ad-3c55-8e70-71e75fb64582
+2026-02-20 14:30:30 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 14:30:30 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 14:30:30 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 14:30:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25800 (http)
+2026-02-20 14:30:30 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 14:30:30 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-02-20 14:30:31 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-02-20 14:30:31 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'user-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 14:30:31 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 8fdbe4ff-16a0-46ee-b0e1-6634f5bec488
+
+2026-02-20 14:30:31 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 14:30:32 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25800 (http) with context path ''
+2026-02-20 14:30:32 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 14:30:32 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 14:30:32 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP gateway 192.168.110.38:25800 register finished
+2026-02-20 14:30:32 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [192.168.136.129:5672]
+2026-02-20 14:30:32 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#cc7909f:0/SimpleConnection@2de82bf8 [delegate=amqp://root@192.168.136.129:5672/, localPort= 64160]
+2026-02-20 14:30:32 [main] INFO  c.example.gateway.GatewayApplication - Started GatewayApplication in 4.33 seconds (JVM running for 5.175)
+2026-02-20 14:30:32 [main] INFO  c.e.g.bootstrap.TenantBootstrap - Gateway启动预热：开始加载租户映射信息...
+2026-02-20 14:30:33 [main] INFO  c.e.g.bootstrap.TenantBootstrap - Gateway启动预热完成：共缓存 5 个租户
+2026-02-20 14:30:33 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 14:30:33 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=gateway.yml, group=DEFAULT_GROUP
+2026-02-20 14:30:33 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=gateway, group=DEFAULT_GROUP
+2026-02-20 16:02:00 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[gateway] & group[DEFAULT_GROUP]
+2026-02-20 16:02:00 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[gateway.yml] & group[DEFAULT_GROUP]
+2026-02-20 16:02:00 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-gateway.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-gateway,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 16:02:00 [main] INFO  c.example.gateway.GatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 16:02:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 16:02:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 16:02:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2026-02-20 16:02:01 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=0c704b4e-b2ad-3c55-8e70-71e75fb64582
+2026-02-20 16:02:01 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 16:02:01 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 16:02:01 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 16:02:01 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25800 (http)
+2026-02-20 16:02:01 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 16:02:01 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-02-20 16:02:01 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-02-20 16:02:01 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'user-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 16:02:02 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 19c930ea-eaaf-4756-a453-382c8945e667
+
+2026-02-20 16:02:02 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 16:02:02 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25800 (http) with context path ''
+2026-02-20 16:02:03 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 16:02:03 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 16:02:03 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP gateway 192.168.110.38:25800 register finished
+2026-02-20 16:02:03 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [192.168.136.129:5672]
+2026-02-20 16:02:03 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#548f4f60:0/SimpleConnection@1ae23815 [delegate=amqp://root@192.168.136.129:5672/, localPort= 58095]
+2026-02-20 16:02:03 [main] INFO  c.example.gateway.GatewayApplication - Started GatewayApplication in 3.877 seconds (JVM running for 4.325)
+2026-02-20 16:02:03 [main] INFO  c.e.g.bootstrap.TenantBootstrap - Gateway启动预热：开始加载租户映射信息...
+2026-02-20 16:02:03 [main] INFO  c.e.g.bootstrap.TenantBootstrap - Gateway启动预热完成：共缓存 6 个租户
+2026-02-20 16:02:03 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 16:02:03 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=gateway.yml, group=DEFAULT_GROUP
+2026-02-20 16:02:03 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=gateway, group=DEFAULT_GROUP
+2026-02-20 20:05:04 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 20:05:04 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 20:05:04 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 20:05:04 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 20:05:04 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  o.s.a.r.l.SimpleMessageListenerContainer - Waiting for workers to finish.
+2026-02-20 20:05:05 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  o.s.a.r.l.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2026-02-20 20:05:07 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2026-02-20 20:05:07 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2026-02-20 20:05:07 [SpringApplicationShutdownHook] INFO  o.s.a.r.l.SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
+2026-02-20 20:05:11 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[gateway] & group[DEFAULT_GROUP]
+2026-02-20 20:05:11 [main] WARN  c.a.c.n.c.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[gateway.yml] & group[DEFAULT_GROUP]
+2026-02-20 20:05:11 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-gateway.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-gateway,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-share-data.yml,DEFAULT_GROUP'}]
+2026-02-20 20:05:11 [main] INFO  c.example.gateway.GatewayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-20 20:05:12 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-20 20:05:12 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-20 20:05:12 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2026-02-20 20:05:12 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=0c704b4e-b2ad-3c55-8e70-71e75fb64582
+2026-02-20 20:05:12 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 20:05:12 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 20:05:12 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2026-02-20 20:05:12 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 25800 (http)
+2026-02-20 20:05:12 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-20 20:05:12 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [After]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Before]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Between]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Cookie]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Header]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Host]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Method]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Path]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Query]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [ReadBody]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [RemoteAddr]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [Weight]
+2026-02-20 20:05:12 [main] INFO  o.s.c.g.r.RouteDefinitionRouteLocator - Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-02-20 20:05:12 [main] INFO  o.s.c.o.FeignClientFactoryBean - For 'user-service' URL not provided. Will try picking an instance via load-balancing.
+2026-02-20 20:05:12 [main] INFO  o.s.b.a.s.r.ReactiveUserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 107e790b-efc4-487e-b6c5-00e768a96be6
+
+2026-02-20 20:05:13 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-02-20 20:05:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 25800 (http) with context path ''
+2026-02-20 20:05:13 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2026-02-20 20:05:13 [main] INFO  c.a.n.p.a.s.c.ClientAuthPluginManager - [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2026-02-20 20:05:14 [main] INFO  c.a.c.n.r.NacosServiceRegistry - nacos registry, DEFAULT_GROUP gateway 192.168.110.38:25800 register finished
+2026-02-20 20:05:14 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [192.168.136.129:5672]
+2026-02-20 20:05:14 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#41bbdd8a:0/SimpleConnection@41e76252 [delegate=amqp://root@192.168.136.129:5672/, localPort= 63564]
+2026-02-20 20:05:14 [main] INFO  c.example.gateway.GatewayApplication - Started GatewayApplication in 3.942 seconds (JVM running for 4.381)
+2026-02-20 20:05:14 [main] INFO  c.e.g.bootstrap.TenantBootstrap - Gateway启动预热：开始加载租户映射信息...
+2026-02-20 20:05:14 [main] INFO  c.e.g.bootstrap.TenantBootstrap - Gateway启动预热完成：共缓存 6 个租户
+2026-02-20 20:05:14 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=share-data.yml, group=DEFAULT_GROUP
+2026-02-20 20:05:14 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=gateway.yml, group=DEFAULT_GROUP
+2026-02-20 20:05:14 [main] INFO  c.a.c.n.r.NacosContextRefresher - [Nacos Config] Listening config: dataId=gateway, group=DEFAULT_GROUP
+2026-02-20 23:05:07 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Start destroying common HttpClient
+2026-02-20 23:05:07 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Start destroying Publisher
+2026-02-20 23:05:07 [Thread-7] WARN  c.a.nacos.common.notify.NotifyCenter - [NotifyCenter] Destruction of the end
+2026-02-20 23:05:07 [Thread-1] WARN  c.a.n.c.http.HttpClientBeanHolder - [HttpClientBeanHolder] Destruction of the end
+2026-02-20 23:05:07 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  o.s.a.r.l.SimpleMessageListenerContainer - Waiting for workers to finish.
+2026-02-20 23:05:08 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] INFO  o.s.a.r.l.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2026-02-20 23:05:10 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registering from Nacos Server now...
+2026-02-20 23:05:10 [SpringApplicationShutdownHook] INFO  c.a.c.n.r.NacosServiceRegistry - De-registration finished.
+2026-02-20 23:05:10 [SpringApplicationShutdownHook] INFO  o.s.a.r.l.SimpleMessageListenerContainer - Shutdown ignored - container is already stopped
