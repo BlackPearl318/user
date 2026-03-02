@@ -64,5 +64,4 @@ mybatis-plus:
 
 
 basePath:
-  auth: /at
-  user: /us
+  auth: /api/auth
