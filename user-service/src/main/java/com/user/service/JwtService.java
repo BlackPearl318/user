@@ -22,12 +22,13 @@ public class JwtService {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String generate(String userId, Map<String, Object> claims) {
+    public String generate(String userId, Long tenantId, Map<String, Object> claims) {
         long now = System.currentTimeMillis();
         return Jwts.builder()
                 .setSubject(userId)
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + expirationMs))
+                .claim("tid", tenantId) // 注入租户ID，键名建议简短如 "tid"
                 .addClaims(claims)
                 .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();

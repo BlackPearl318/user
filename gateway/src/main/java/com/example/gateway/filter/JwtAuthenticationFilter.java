@@ -32,40 +32,46 @@ public class JwtAuthenticationFilter implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 
+        // 1. 放行 OPTIONS 预检
         if (exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
             return chain.filter(exchange);
         }
 
+        // 2. 放行白名单（登录、注册等）
         String path = exchange.getRequest().getURI().getPath();
-        if (path.startsWith("/at/")) {
+        if (path.startsWith("/api/auth/")) {
             return chain.filter(exchange);
         }
 
-        String authHeader = exchange.getRequest()
-                .getHeaders()
-                .getFirst(HttpHeaders.AUTHORIZATION);
+        String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
+        // 3. 非白名单接口，如果没有 Token，直接拒绝！
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return chain.filter(exchange);
+            log.warn("拒绝无令牌访问私有接口: {}", path);
+            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete(); // 终止请求，不发往后端
         }
 
         try {
             Claims claims = jwtVerifier.verify(authHeader.substring(7));
-
             String userId = claims.getSubject();
+            // 1. 提取 JWT 里的租户 ID
+            Object tidClaim = claims.get("tid");
+            String tenantIdFromJwt = tidClaim != null ? tidClaim.toString() : null;
 
-            // 先清除原有 Header 再设置新Header
             ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
-            builder.headers(h -> {
-                h.remove("X-User-Id");
-            });
+
+            // 2. 注入/覆盖 User-Id
             builder.header("X-User-Id", userId);
 
-            ServerWebExchange mutated = exchange.mutate()
-                    .request(builder.build())
-                    .build();
+            // 3. 安全核心：如果 JWT 包含租户 ID，强制覆盖 Header
+            // 哪怕之前的 TenantFilter 解析了子域名，这里也以 JWT 签名为准
+            if (tenantIdFromJwt != null) {
+                builder.headers(h -> h.remove("X-Tenant-Id")); // 清除域名解析的结果
+                builder.header("X-Tenant-Id", tenantIdFromJwt);
+            }
 
-            return chain.filter(mutated);
+            return chain.filter(exchange.mutate().request(builder.build()).build());
 
         } catch (JwtException e) {
             log.warn("JWT 校验失败: {}", e.getMessage());

@@ -1,21 +1,20 @@
 package com.user.controller;
 
 import com.example.common.context.tenant.TenantContext;
-import com.example.common.util.limit.api.RateLimit;
-import com.example.common.util.limit.type.RateLimitType;
 
 import com.example.common.util.result.BaseResponse;
 import com.example.common.util.result.ErrorCode;
 import com.example.common.util.result.ResultUtils;
 
-import com.example.user.dto.LoginByPhoneRequest;
-import com.example.user.dto.LoginRequest;
-import com.example.user.enums.UserRoleType;
+import com.example.user.dto.request.LoginByPhoneRequest;
+import com.example.user.dto.request.LoginRequest;
+import com.example.user.enums.user.UserRoleType;
 import com.user.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +27,7 @@ public class AuthController {
 
     @Value("${basePath.auth}")
     private String path; // 基础路径
+
     @Value("${refresh.token.name}")
     private String refreshToken; // refreshToken的name
 
@@ -48,15 +48,15 @@ public class AuthController {
     }
 
     /**
-     * 手机号登录
-     * 所有角色登录时都需要指定tenantId
+     * 普通用户登录
+     * 需要在合法域名下登录，指定tenantId
      * @param loginRequest 数据请求DTO
      * @param response 响应体
      * @return BaseResponse
      */
     @PostMapping("/login")
-    @RateLimit(type = RateLimitType.DEVICE, maxRequests = 5, windowSeconds = 60 * 60 * 24)
-    public BaseResponse<?> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
+    public BaseResponse<?> login(@Validated @RequestBody LoginRequest loginRequest,
+                                 HttpServletResponse response) {
 
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
@@ -69,8 +69,8 @@ public class AuthController {
 
         Long userId = userService.getUserId(Long.valueOf(tenantId), username);
 
-        String accessToken = jwtService.generate(userId.toString(), Map.of());
-        String refreshTokenId = refreshTokenService.create(userId.toString());
+        String accessToken = jwtService.generate(userId.toString(), Long.valueOf(tenantId), Map.of());
+        String refreshTokenId = refreshTokenService.create(userId, Long.valueOf(tenantId));
 
         ResponseCookie cookie = ResponseCookie.from(refreshToken, refreshTokenId)
                 .httpOnly(true)
@@ -94,8 +94,8 @@ public class AuthController {
      * @return BaseResponse
      */
     @PostMapping("/loginByPhone")
-    @RateLimit(type = RateLimitType.DEVICE, maxRequests = 5, windowSeconds = 60 * 60 * 24)
-    public BaseResponse<?> loginByPhone(@RequestBody LoginByPhoneRequest lbpRequest, HttpServletResponse response) {
+    public BaseResponse<?> loginByPhone(@Validated @RequestBody LoginByPhoneRequest lbpRequest,
+                                        HttpServletResponse response) {
         // 获取参数
         String phone = lbpRequest.getPhone();
         String code = lbpRequest.getCode();
@@ -111,8 +111,8 @@ public class AuthController {
         authService.loginByPhone(Long.valueOf(tenantId), phone, code, role);
 
         // 生成短token和refreshToken
-        String accessToken = jwtService.generate(userId.toString(), Map.of());
-        String refreshTokenId = refreshTokenService.create(userId.toString());
+        String accessToken = jwtService.generate(userId.toString(), Long.valueOf(tenantId), Map.of());
+        String refreshTokenId = refreshTokenService.create(userId, Long.valueOf(tenantId));
 
         // 返回refreshToken
         ResponseCookie cookie = ResponseCookie.from(refreshToken, refreshTokenId)
@@ -129,7 +129,6 @@ public class AuthController {
 
     // 刷新令牌
     @PostMapping("/refresh")
-    @RateLimit(type = RateLimitType.DEVICE, maxRequests = 500, windowSeconds = 60 * 60 * 24)
     public BaseResponse<?> refresh(@CookieValue(value = "${refresh.token.name}", required = false) String refreshTokenId,
                           HttpServletResponse response) {
 
@@ -137,13 +136,20 @@ public class AuthController {
             return ResultUtils.error(ErrorCode.PARAMS_ERROR, "无refreshToken");
         }
 
-        String userId = refreshTokenService.verify(refreshTokenId);
-        if (userId == null) {
+        // 从 Redis 直接拿到 userId 和 tenantId
+        String[] info = refreshTokenService.verifyAndGetInfo(refreshTokenId);
+        if (info == null) {
             return ResultUtils.error(ErrorCode.PARAMS_ERROR, "refreshToken错误");
         }
 
+        String userId = info[0];
+        Long tenantId = Long.valueOf(info[1]);
+
+        // 滚动 Token
         String newRefreshTokenId = refreshTokenService.rotate(refreshTokenId);
-        String newAccessToken = jwtService.generate(userId, Map.of());
+
+        // 签发带 tid 的 AccessToken（无需查库）
+        String newAccessToken = jwtService.generate(userId, tenantId, Map.of());
 
         ResponseCookie cookie = ResponseCookie.from(refreshToken, newRefreshTokenId)
                 .httpOnly(true)

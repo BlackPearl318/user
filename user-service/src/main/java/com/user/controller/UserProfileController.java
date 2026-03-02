@@ -3,11 +3,13 @@ package com.user.controller;
 import com.example.common.context.user.UserContext;
 import com.example.common.util.result.BaseResponse;
 import com.example.common.util.result.ResultUtils;
-import com.example.user.dto.ResetProfileRequest;
+import com.example.user.dto.UserProfileDTO;
+import com.example.user.dto.request.ResetProfileRequest;
 import com.user.pojo.UserProfile;
 import com.user.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,14 +42,14 @@ public class UserProfileController {
         String userId = UserContext.getUserId();
 
         // 获取用户的个人资料
-        UserProfile userProfile = userProfileService.getProfile(Long.valueOf(userId));
+        UserProfileDTO userProfile = userProfileService.getProfile(Long.valueOf(userId));
 
         return ResultUtils.success(userProfile);
     }
 
     // 用户编辑个人信息
     @PutMapping("/editProfile")
-    public BaseResponse<?> editProfile(@RequestBody ResetProfileRequest request){
+    public BaseResponse<?> editProfile(@Validated @RequestBody ResetProfileRequest request){
 
         // 构建用户个人资料
         UserProfile userProfile = new UserProfile();

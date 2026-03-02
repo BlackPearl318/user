@@ -2,10 +2,12 @@ package com.user.service;
 
 import com.example.common.util.result.BusinessException;
 import com.example.common.util.result.ErrorCode;
+import com.example.user.dto.UserProfileDTO;
 import com.user.mapper.UserProfileMapper;
 import com.user.pojo.UserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
@@ -55,11 +57,7 @@ public class UserProfileService {
     }
 
     // 查看用户个人信息
-    public UserProfile getProfile(Long userId) {
-
-        if (userId == null || userId <= 0) {
-            throw new BusinessException(ErrorCode.PARAMS_INVALID, "用户ID非法");
-        }
+    public UserProfileDTO getProfile(Long userId) {
 
         UserProfile userProfile = userProfileMapper.selectUserProfileById(userId);
 
@@ -68,16 +66,14 @@ public class UserProfileService {
             throw new BusinessException(ErrorCode.RESOURCE_NOT_FOUND, "用户信息不存在");
         }
 
-        return userProfile;
+        UserProfileDTO userProfileDTO = new UserProfileDTO();
+        BeanUtils.copyProperties(userProfile, userProfileDTO);
+        return userProfileDTO;
     }
 
     // 用户编辑个人信息,头像除外
     @Transactional
     public void changeProfile(UserProfile userProfile) {
-
-        if (userProfile == null) {
-            throw new BusinessException(ErrorCode.PARAMS_INVALID, "参数异常");
-        }
 
         boolean rows;
         try {

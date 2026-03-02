@@ -2,7 +2,7 @@ package com.user.service;
 
 import com.example.common.util.result.BusinessException;
 import com.example.common.util.result.ErrorCode;
-import com.example.user.enums.UserRoleType;
+import com.example.user.enums.user.UserRoleType;
 import com.user.mapper.UserRoleMapper;
 import com.user.mapper.UserRoleMappingMapper;
 import com.user.pojo.UserRoleMapping;
@@ -35,38 +35,15 @@ public class UserRoleService {
         }
 
         try {
-            // 1. 获取角色映射
+            // 获取角色映射
             Long roleId = userRoleMappingMapper.getRoleId(userId);
             if (roleId == null) {
                 logger.info("用户 {} 未分配角色", userId);
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR);
             }
 
-            // 2. 获取角色代码
-            Long roleCode = userRoleMapper.getRole(roleId);
-            if (roleCode == null) {
-                logger.warn("角色ID {} 对应的角色代码不存在，用户: {}", roleId, userId);
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR);
-            }
-
-            // 3. 安全类型转换
-            int intRoleCode;
-            try {
-                intRoleCode = Math.toIntExact(roleCode);
-            } catch (ArithmeticException e) {
-                logger.error("角色代码溢出，用户: {}, 原始值: {}", userId, roleCode, e);
-                throw new BusinessException(ErrorCode.PARAMS_ERROR);
-            }
-
-            // 4. 转换为枚举类型
-            UserRoleType roleType = UserRoleType.fromCode(intRoleCode);
-            if (roleType == null) {
-                logger.warn("未知的角色代码: {}, 用户: {}", intRoleCode, userId);
-                throw new BusinessException(ErrorCode.PARAMS_ERROR);
-            }
-
-            logger.debug("用户 {} 的角色: {}", userId, roleType);
-            return roleType;
+            // 获取角色权限
+            return userRoleMapper.getRole(roleId);
 
         } catch (Exception e) {
             logger.error("获取用户角色失败，用户ID: {}", userId, e);

@@ -3,14 +3,12 @@ package com.user.controller;
 import com.example.common.context.user.UserContext;
 import com.example.common.util.result.BaseResponse;
 import com.example.common.util.result.ResultUtils;
-import com.example.user.dto.ReadNotificationRequest;
+import com.example.user.dto.request.ReadNotificationRequest;
 import com.user.pojo.UserNotification;
 import com.user.service.UserNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class UserNotificationController {
     }
 
     // 获取某个用户的全部通知
-    @PostMapping("/getNotifications")
+    @GetMapping("/getNotifications")
     public BaseResponse<?> getNotifications(){
         // 获取用户id
         Long userId = Long.valueOf(UserContext.getUserId());
@@ -37,8 +35,8 @@ public class UserNotificationController {
     }
 
     // 用户已读某个通知
-    @PostMapping("/readNotification")
-    public BaseResponse<?> readNotification(@RequestBody ReadNotificationRequest request){
+    @PutMapping("/readNotification")
+    public BaseResponse<?> readNotification(@Validated @RequestBody ReadNotificationRequest request){
         // 获取参数
         Long id = request.getId();
 
@@ -48,7 +46,7 @@ public class UserNotificationController {
     }
 
     // 用户将通知标记为全部已读
-    @PostMapping("/readNotifications")
+    @PutMapping("/readNotifications")
     public BaseResponse<?> readNotifications(){
         // 获取用户id
         Long userId = Long.valueOf(UserContext.getUserId());
@@ -58,8 +56,8 @@ public class UserNotificationController {
     }
 
     // 用户未读某个通知
-    @PostMapping("/unreadNotification")
-    public BaseResponse<?> unreadNotification(@RequestBody ReadNotificationRequest request){
+    @PutMapping("/unreadNotification")
+    public BaseResponse<?> unreadNotification(@Validated @RequestBody ReadNotificationRequest request){
         // 获取参数
         Long id = request.getId();
 
@@ -69,7 +67,7 @@ public class UserNotificationController {
     }
 
     // 用户将全部通知标记为未读
-    @PostMapping("/unreadNotifications")
+    @PutMapping("/unreadNotifications")
     public BaseResponse<?> unreadNotifications(){
         // 获取用户id
         Long userId = Long.valueOf(UserContext.getUserId());

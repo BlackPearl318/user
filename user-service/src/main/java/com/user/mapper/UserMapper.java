@@ -1,6 +1,7 @@
 package com.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.user.enums.user.UserStatus;
 import com.user.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -36,9 +37,9 @@ public interface UserMapper extends BaseMapper<User> {
 
 
     // 改变用户状态
-    boolean changeUserStatus(@Param("id") Long userId, @Param("status")Integer status);
+    boolean changeUserStatus(@Param("id") Long userId, @Param("status")UserStatus status);
     // 查询用户状态
-    Integer selectUserStatus(@Param("id") Long userId);
+    UserStatus selectUserStatus(@Param("id") Long userId);
 
 
 
@@ -67,6 +68,13 @@ public interface UserMapper extends BaseMapper<User> {
     int unfreeze(@Param("userId") Long userId);
     // 查询冻结时间
     Timestamp selectFrozenUntil(@Param("userId") Long userId);
+
+
+
+
+
+    // 根据用户id获取租户id
+    Long getTenantId(@Param("userId") Long userId);
 
     // 统计该租户名下的用户数量
     Integer countByTenantId(@Param("tenantId")Long tenantId);

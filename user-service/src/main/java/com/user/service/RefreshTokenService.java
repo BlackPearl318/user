@@ -23,11 +23,14 @@ public class RefreshTokenService {
     }
 
     /** 创建 Refresh Token */
-    public String create(String userId) {
+    public String create(Long userId, Long tenantId) {
         String tokenId = UUID.randomUUID().toString();
+        // 存储格式改为 userId:tenantId，例如 "12345:1"
+        String value = userId + ":" + tenantId;
+
         redisTemplate.opsForValue().set(
                 key(tokenId),
-                userId,
+                value,
                 ttlDays,
                 TimeUnit.DAYS
         );
@@ -35,18 +38,23 @@ public class RefreshTokenService {
     }
 
     /** 校验 Refresh Token，返回 userId */
-    public String verify(String tokenId) {
-        return redisTemplate.opsForValue().get(key(tokenId));
+    public String[] verifyAndGetInfo(String tokenId) {
+        String value = redisTemplate.opsForValue().get(key(tokenId));
+        if (value == null) {
+            return null;
+        }
+        return value.split(":"); // 返回 [userId, tenantId]
     }
 
     /** 轮换 Refresh Token */
     public String rotate(String oldTokenId) {
-        String userId = verify(oldTokenId);
-        if (userId == null) {
+        String[] info = verifyAndGetInfo(oldTokenId);
+        if (info == null) {
             throw new BusinessException(ErrorCode.TOKEN_INVALID, "Refresh Token 无效");
         }
         redisTemplate.delete(key(oldTokenId));
-        return create(userId);
+        // 使用原有的信息重新创建
+        return create(Long.valueOf(info[0]), Long.valueOf(info[1]));
     }
 
     /** 主动失效（退出登录） */

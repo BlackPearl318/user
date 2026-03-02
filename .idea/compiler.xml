@@ -9,13 +9,18 @@
         <module name="sms-api" />
         <module name="common-util" />
         <module name="user-api" />
+        <module name="forum-api" />
         <module name="sms-service" />
+        <module name="forum-service" />
         <module name="common-context" />
         <module name="user-service" />
         <module name="gateway" />
+        <module name="file-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="file-api" target="17" />
+      <module name="file-service" target="17" />
       <module name="scrapped-service" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -23,6 +28,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common-context" options="-parameters" />
       <module name="common-util" options="-parameters" />
+      <module name="file-api" options="-parameters" />
+      <module name="file-service" options="-parameters" />
+      <module name="forum-api" options="-parameters" />
+      <module name="forum-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="scrapped-service" options="-parameters" />
       <module name="sms-api" options="-parameters" />

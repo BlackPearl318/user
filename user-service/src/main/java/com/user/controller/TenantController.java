@@ -4,13 +4,14 @@ import com.example.common.context.tenant.TenantContext;
 import com.example.common.util.result.BaseResponse;
 import com.example.common.util.result.ResultUtils;
 import com.example.user.dto.TenantInfoDTO;
-import com.example.user.dto.TenantPlanRequest;
-import com.example.user.dto.TenantRegisterRequest;
+import com.example.user.dto.request.TenantPlanRequest;
+import com.example.user.dto.request.TenantRegisterRequest;
 import com.example.user.dto.TenantDTO;
-import com.example.user.enums.TenantPlan;
-import com.user.pojo.Tenant;
+import com.example.user.enums.tenant.TenantPlan;
+import com.user.service.RegistrationService;
 import com.user.service.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,10 +21,13 @@ import java.util.List;
 public class TenantController {
 
     private final TenantService tenantService;
+    private final RegistrationService registrationService;
 
     @Autowired
-    public TenantController(TenantService tenantService) {
+    public TenantController(TenantService tenantService,
+                            RegistrationService registrationService) {
         this.tenantService = tenantService;
+        this.registrationService = registrationService;
     }
 
     // 获取全部的租户映射信息
@@ -42,15 +46,15 @@ public class TenantController {
 
     // 租户手机号注册
     @PostMapping("/register")
-    public BaseResponse<?> register(@RequestBody TenantRegisterRequest request){
+    public BaseResponse<?> register(@Validated @RequestBody TenantRegisterRequest request){
         // 获取参数
-        String tName = request.gettName();
+        String tName = request.getTName();
         String phone = request.getPhone();
         String password1 = request.getPassword1();
         String password2 = request.getPassword2();
         String code = request.getCode();
 
-        String path = tenantService.register(tName, phone, password1, password2, code);
+        String path = registrationService.registerTenant(tName, phone, password1, password2, code);
 
         return ResultUtils.success(path);
     }
@@ -58,7 +62,7 @@ public class TenantController {
 
     // 租户更改套餐
     @PutMapping("/tenantPlan")
-    public BaseResponse<?> tenantPlan(@RequestBody TenantPlanRequest request){
+    public BaseResponse<?> tenantPlan(@Validated @RequestBody TenantPlanRequest request){
         String tenantId = TenantContext.getTenantId();
         tenantService.setTenantPlan(Long.valueOf(tenantId), TenantPlan.fromCode(request.getPlan()));
         return ResultUtils.success("更改套餐成功");

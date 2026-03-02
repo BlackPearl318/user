@@ -1,7 +1,5 @@
 package com.sms.controller;
 
-import com.example.common.util.limit.api.RateLimit;
-import com.example.common.util.limit.type.RateLimitType;
 import com.example.common.util.result.BaseResponse;
 import com.example.common.util.result.ErrorCode;
 import com.example.common.util.result.ResultUtils;
@@ -24,7 +22,6 @@ public class SmsController {
     }
 
     @PostMapping("/send")
-    @RateLimit(type = RateLimitType.DEVICE, maxRequests = 5, windowSeconds = 60 * 60 * 24)
     public BaseResponse<?> sendSms(@RequestBody SmsRequest request) {
         try {
             smsService.sendSmsCode(request.getPhone());
@@ -35,7 +32,6 @@ public class SmsController {
     }
 
     @PostMapping("/verify")
-    @RateLimit(type = RateLimitType.DEVICE, maxRequests = 5, windowSeconds = 60 * 60 * 24)
     public BaseResponse<?> verifySms(@RequestBody SmsRequest request) {
         try {
             boolean result = smsService.verifySmsCode(request.getPhone(), request.getCode());

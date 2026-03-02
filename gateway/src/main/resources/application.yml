@@ -35,168 +35,326 @@ spring:
 
     gateway:
       routes:
-        # 用户账号密码登录路由
-        - id: user_login
+        # 1. 用户登录 (密码)
+        - id: auth_login
           uri: lb://user-service
           predicates:
-            - Path=/at/uli
+            - Path=/api/auth/login
             - Method=POST
           filters:
-            - RewritePath=/at/uli, /auth/login
+            - RewritePath=/api/auth/login, /auth/login
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
 
-        # 用户手机号登录路由
-        - id: user_loginByPhone
+        # 2. 用户登录 (手机号)
+        - id: auth_login_phone
           uri: lb://user-service
           predicates:
-            - Path=/at/ulp
+            - Path=/api/auth/login/phone
             - Method=POST
           filters:
-            - RewritePath=/at/ulp, /auth/loginByPhone
+            - RewritePath=/api/auth/login/phone, /auth/loginByPhone
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
 
-        # 刷新令牌
-        - id: user_refresh
+        # 3. 刷新令牌 (Token Refresh)
+        - id: auth_refresh
           uri: lb://user-service
           predicates:
-            - Path=/at/ref
+            - Path=/api/auth/refresh
             - Method=POST
           filters:
-            - RewritePath=/at/ref, /auth/refresh
-#
-#        # 用户注销路由
-#        - id: user_logout
-#          uri: lb://user-service
-#          predicates:
-#            - Path=/ult
-#            - Method=POST
-#          filters:
-#            - RewritePath=/ult, /auth/logout
-#
-        # 用户登出路由
-        - id: user_quit
-          uri: lb://user-service
-          predicates:
-            - Path=/at/al
-            - Method=POST
-          filters:
-            - RewritePath=/at/al, /auth/logout
+            - RewritePath=/api/auth/refresh, /auth/refresh
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                # 刷新 Token 频率不宜过高
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 5
 
-        # 用户注册路由
-        - id: user_register
+        # 4. 用户登出 (Logout)
+        - id: auth_logout
           uri: lb://user-service
           predicates:
-            - Path=/us/ur
+            - Path=/api/auth/logout
             - Method=POST
           filters:
-            - RewritePath=/us/ur, /user/register
+            - RewritePath=/api/auth/logout, /auth/logout
+            - name: RequestRateLimiter
+              args:
+                # 登出通常针对已登录用户，建议按 UserID 限流防止恶意刷接口
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 5
 
-        # 发送验证码
+        # 5. 发送验证码 (高危接口，严格限流)
         - id: sms_send
           uri: lb://sms-service
           predicates:
-            - Path=/ss
+            - Path=/api/sms/codes
             - Method=POST
           filters:
-            - RewritePath=/ss, /sms/send
+            - RewritePath=/api/sms/codes, /sms/send
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 1 # 每秒1个，防止短信轰炸
+                redis-rate-limiter.burstCapacity: 1
 
-        # 用户修改绑定手机路由
-        - id: user_resetPhone
+        # 6. 用户注册
+        - id: user_register
           uri: lb://user-service
           predicates:
-            - Path=/us/urp
-            - Method=PUT
-          filters:
-            - RewritePath=/us/urp, /user/resetPhone
-
-        # 用户找回密码路由
-        - id: user_resetPass
-          uri: lb://user-service
-          predicates:
-            - Path=/us/rp
-            - Method=PUT
-          filters:
-            - RewritePath=/us/rp, /user/resetPass
-
-        # 获取获取某租户下的所有用户
-        - id: user_getUsers
-          uri: lb://user-service
-          predicates:
-            - Path=/us/gus
-            - Method=GET
-          filters:
-            - RewritePath=/us/gus, /user/getUsers
-
-
-
-
-
-
-        # 获取用户资料路由
-        - id: user_getProfile
-          uri: lb://user-service
-          predicates:
-            - Path=/us/ugp
-            - Method=GET
-          filters:
-            - RewritePath=/us/ugp, /prof/getProfile
-
-        # 上传头像路由
-        - id: user_uploadAvatar
-          uri: lb://user-service
-          predicates:
-            - Path=/us/uua
+            - Path=/api/users
             - Method=POST
           filters:
-            - RewritePath=/us/uua, /prof/uploadAvatar
+            - RewritePath=/api/users, /user/register
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 3
+                redis-rate-limiter.burstCapacity: 5
 
-        # 用户编辑资料路由
-        - id: user_editProfile
+        # 7. 修改手机号
+        - id: user_reset_phone
           uri: lb://user-service
           predicates:
-            - Path=/us/ueup
+            - Path=/api/users/phone
             - Method=PUT
           filters:
-            - RewritePath=/us/ueup, /prof/editProfile
+            - RewritePath=/api/users/phone, /user/resetPhone
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}" # 建议按用户限流
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
 
-        # 获取用户通知路由
-        - id: user_getNotifications
+        # 8. 找回密码
+        - id: user_reset_password
           uri: lb://user-service
           predicates:
-            - Path=/us/ugn
-            - Method=POST
+            - Path=/api/users/password
+            - Method=PUT
           filters:
-            - RewritePath=/us/ugn, /not/getNotifications
+            - RewritePath=/api/users/password, /user/resetPass
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 3
 
-
-
-
-
-
-        # 获取租户信息
-        - id: tenant_getTenantInfo
+        # 9. 获取某租户下的所有用户
+        - id: tenant_get_users
           uri: lb://user-service
           predicates:
-            - Path=/us/gti
+            - Path=/api/tenants/users
             - Method=GET
           filters:
-            - RewritePath=/us/gti, /ten/getTenantInfo
+            - RewritePath=/api/tenants/users, /user/getUsers
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@tenantKeyResolver}"
+                redis-rate-limiter.replenishRate: 20
+                redis-rate-limiter.burstCapacity: 50
 
-        # 租户注册路由
+
+
+
+
+
+        # 1. 获取用户资料
+        - id: user_get_profile
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/profile
+            - Method=GET
+          filters:
+            - RewritePath=/api/users/profile, /prof/getProfile
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 20  # 查询频率可以略高
+                redis-rate-limiter.burstCapacity: 40
+
+        # 2. 上传头像
+        - id: user_upload_avatar
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/profile/avatar
+            - Method=POST
+          filters:
+            - RewritePath=/api/users/profile/avatar, /prof/uploadAvatar
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 2   # 上传文件属于耗能操作，调低限流
+                redis-rate-limiter.burstCapacity: 5
+
+        # 3. 编辑用户资料
+        - id: user_update_profile
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/profile
+            - Method=PUT
+          filters:
+            - RewritePath=/api/users/profile, /prof/editProfile
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+
+        # 4. 获取用户通知
+        - id: user_get_notifications
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/notifications
+            - Method=GET
+          filters:
+            - RewritePath=/api/users/notifications, /not/getNotifications
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+
+
+        # 1. 获取当前租户信息
+        - id: tenant_get_info
+          uri: lb://user-service
+          predicates:
+            - Path=/api/tenants/info
+            - Method=GET
+          filters:
+            - RewritePath=/api/tenants/info, /ten/getTenantInfo
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@tenantKeyResolver}"
+                redis-rate-limiter.replenishRate: 50
+                redis-rate-limiter.burstCapacity: 100
+
+        # 2. 租户注册 (新租户创建)
         - id: tenant_register
           uri: lb://user-service
           predicates:
-            - Path=/us/tr
+            - Path=/api/tenants
             - Method=POST
           filters:
-            - RewritePath=/us/tr, /ten/register
+            - RewritePath=/api/tenants, /ten/register
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}" # 还没注册，按 IP 限流
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
 
-        # 租户更改套餐
-        - id: tenant_plan
+        # 3. 更改租户套餐
+        - id: tenant_update_plan
           uri: lb://user-service
           predicates:
-            - Path=/us/tp
+            - Path=/api/tenants/plan
             - Method=PUT
           filters:
-            - RewritePath=/us/tp, /ten/tenantPlan
+            - RewritePath=/api/tenants/plan, /ten/tenantPlan
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@tenantKeyResolver}"
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+
+
+        # 1. 发布帖子 (需要登录 + 用户限流)
+        - id: forum_post_create
+          uri: lb://forum-service
+          predicates:
+            - Path=/api/forum/post/create
+            - Method=POST
+          filters:
+            - RewritePath=/api/forum/post/create, /post/uploadPost
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 10
+
+        # 2. 删除帖子 (需要登录 + 角色校验建议在后端做)
+        - id: forum_post_delete
+          uri: lb://forum-service
+          predicates:
+            - Path=/api/forum/post/delete
+            - Method=DELETE
+          filters:
+            - RewritePath=/api/forum/post/delete, /post/deletePost
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 5
+
+        # 3. 获取所有帖子 (公共接口 + IP限流)
+        - id: forum_post_list_all
+          uri: lb://forum-service
+          predicates:
+            - Path=/api/forum/post/list
+            - Method=GET
+          filters:
+            - RewritePath=/api/forum/post/list, /post/listPosts
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@ipKeyResolver}"
+                redis-rate-limiter.replenishRate: 20
+                redis-rate-limiter.burstCapacity: 40
+
+        # 4. 按租户查询帖子 (租户限流)
+        - id: forum_post_list_tenant
+          uri: lb://forum-service
+          predicates:
+            - Path=/api/forum/post/tenant
+            - Method=GET
+          filters:
+            - RewritePath=/api/forum/post/tenant, /post/listByTenant
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@tenantKeyResolver}"
+                redis-rate-limiter.replenishRate: 30
+                redis-rate-limiter.burstCapacity: 60
+
+        # 5. 按用户查询自己发布的帖子 (用户限流)
+        - id: forum_post_list_user
+          uri: lb://forum-service
+          predicates:
+            - Path=/api/forum/post/user
+            - Method=GET
+          filters:
+            - RewritePath=/api/forum/post/user, /post/listByUser
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@userKeyResolver}"
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -208,16 +366,6 @@ spring:
             - Method=POST
           filters:
             - RewritePath=/us/abc, /user/test
-
-
-
-
-
-
-
-
-
-
 
 
 

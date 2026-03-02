@@ -5,11 +5,9 @@ import com.example.common.util.result.BusinessException;
 import com.example.common.util.result.ErrorCode;
 import com.example.sms.dto.SmsRequest;
 import com.example.sms.feign.SmsClient;
-import com.example.user.enums.UserRoleType;
-import com.example.user.enums.UserStatus;
+import com.example.user.enums.user.UserRoleType;
+import com.example.user.enums.user.UserStatus;
 
-import com.user.mapper.*;
-import com.user.pojo.*;
 import com.user.utils.PasswordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +35,6 @@ public class AuthService {
         this.smsClient = smsClient;
     }
 
-
-
     /**
      * 账号(或手机号)密码登录(用户，租户，管理员)
      * 登录时需要指定tenantId以实现数据隔离
@@ -48,14 +44,6 @@ public class AuthService {
      * @param role 权限
      */
     public void login(Long tenantId, String username, String password, UserRoleType role) {
-        // 判断输入的数据格式
-        if(username == null || username.isEmpty()){
-            throw new BusinessException(ErrorCode.PARAMS_INVALID);
-        }
-        if(password == null || password.isEmpty()){
-            throw new BusinessException(ErrorCode.PARAMS_INVALID);
-        }
-
         //获取用户id
         Long userId = userService.getUserId(tenantId, username);
         if (userId == null) {
@@ -94,7 +82,7 @@ public class AuthService {
                 this.cancelUserDeletion(userId);
             }
         }else{
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "密码错误");
         }
     }
     //验证用户输入的密码是否正确
@@ -106,14 +94,6 @@ public class AuthService {
 
     //手机号登录
     public void loginByPhone(Long tenantId, String phone, String code, UserRoleType role){
-        // 判断输入的数据格式
-        if(phone == null || phone.isEmpty()){
-            throw new BusinessException(ErrorCode.PARAMS_INVALID);
-        }
-        if(code == null || code.isEmpty()){
-            throw new BusinessException(ErrorCode.PARAMS_INVALID);
-        }
-
         // 获取用户id
         Long userId = userService.getUserId(tenantId, phone);
         if(userId == null){

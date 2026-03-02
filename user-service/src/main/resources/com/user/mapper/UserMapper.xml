@@ -48,7 +48,7 @@
     <update id="changeUserStatus">
         UPDATE users SET status = #{status} WHERE id = #{id}
     </update>
-    <select id="selectUserStatus" resultType="java.lang.Integer">
+    <select id="selectUserStatus" resultType="com.example.user.enums.user.UserStatus">
         SELECT status
         FROM users
         WHERE id = #{id}
@@ -130,6 +130,10 @@
         WHERE id = #{userId}
     </select>
 
+
+    <select id="getTenantId" resultType="java.lang.Long">
+        select tenant_id from users where id = #{userId}
+    </select>
 
     <select id="countByTenantId" resultType="java.lang.Integer">
         select count(id) - 1 from users where tenant_id = #{tenantId}

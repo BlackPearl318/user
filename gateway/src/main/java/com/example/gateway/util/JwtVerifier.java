@@ -22,6 +22,10 @@ public class JwtVerifier {
                 .getBody();
     }
 
+    public String getTenantId(Claims claims) {
+        Object tid = claims.get("tid");
+        return tid != null ? tid.toString() : null;
+    }
 
     private Key key() {
         return Keys.hmacShaKeyFor(secret.getBytes());

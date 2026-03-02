@@ -2,7 +2,7 @@ package com.user.service;
 
 import com.example.common.util.result.BusinessException;
 import com.example.common.util.result.ErrorCode;
-import com.example.user.enums.NotificationType;
+import com.example.user.enums.notification.NotificationType;
 import com.user.mapper.UserNotificationMapper;
 import com.user.pojo.UserNotification;
 import org.slf4j.Logger;
@@ -29,15 +29,12 @@ public class UserNotificationService {
     //发送用户通知
     @Transactional
     public void sendNotification(Long userId, String info, NotificationType type){
-        if(userId == null){
-            return;
-        }
 
         UserNotification userNotification = new UserNotification();
         userNotification.setUserId(userId);
         userNotification.setMessage(info);
         userNotification.setRead(false);
-        userNotification.setType(type.getCode());
+        userNotification.setType(type);
 
         try{
             userNotificationMapper.addUserNotification(userNotification);
@@ -50,10 +47,6 @@ public class UserNotificationService {
     // 更改某个通知的状态
     @Transactional
     public void changeNotificationStatus(Long id, boolean isRead){
-        if(id == null){
-            return;
-        }
-
         try{
             userNotificationMapper.updateUserNotificationStatus(id, isRead);
         }catch (DataAccessException e){
@@ -65,10 +58,6 @@ public class UserNotificationService {
     // 更改某个用户的全部通知的状态
     @Transactional
     public void changeNotificationsStatus(Long userId, boolean isRead){
-        if(userId == null){
-            return;
-        }
-
         try{
             userNotificationMapper.updateUserNotificationsStatus(userId,isRead);
         }catch (DataAccessException e){
